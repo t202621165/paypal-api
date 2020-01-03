@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  <head>
+    <title>支付成功</title>
+	<link rel="stylesheet" type="text/css" th:href="@{style/css/orderok_css.css}" />
+	<script type="text/javascript">     
+     function countDown(secs,surl){        
+     var jumpTo = document.getElementById('jumpTo');
+     jumpTo.innerHTML=secs;  
+     if(--secs>0){     
+     setTimeout("countDown("+secs+",'"+surl+"')",1000);     
+      }     
+    else{       
+         location.href=surl;     
+       }     
+ }     
+</script> 
+  </head>
+  <body>
+ <div class="upper">
+    <div class="top">
+        <div class="logo">DINGSHENG<small>奇易</small></div>
+    </div>
+    <div class="success">
+        <img th:src="@{style/images/success.png}" />
+        <p class="suc-lg">恭喜！支付成功</p>
+        <p class="suc-sm">您的订单已成功，如有疑问请联系客服，客服QQ:<span th:text="${jsonMap.serviceQQ}"></span></p>
+    </div>
+</div>
+<div class="decor"></div>
+
+<div class="downout">
+    <p>以下是本次订单信息：</p>
+    
+    <table width="100%" border="1" cellspacing="0">
+	    <tr>
+		    <td>平台订单号</td>
+		    <td th:text="${jsonMap.platformOrderNumber}"></td>
+            <td>商户订单号</td>
+		    <td th:text="${jsonMap.orderNumber}"></td>
+	    </tr>
+	    <tr>
+		    <td>订单名称</td>
+		    <td th:text="${jsonMap.productName}"></td>
+            <td>订单金额</td>
+		    <td th:text="${jsonMap.orderMoney}"></td>
+	    </tr>
+	    <tr >
+        	<td>客服QQ</td>
+		    <td th:text="${jsonMap.serviceQQ}">0755-33133331</td>
+            <td>投诉电话</td>
+		    <td th:text="${jsonMap.servicePhone}">0755-33133331</td>
+	    </tr>
+	</table>
+    
+</div>
+
+<div class="footback">
+		<p>Copyright 2016 奇易网络科技有限公司 All Rights Reserved 版权所有 不得转载</p>
+        <p>粤ICP备18054135号-2  |  商户服务协议</p>
+        <p><span id="jumpTo">5</span>秒后自动跳转页面 <script th:inline="javascript"> var retUrl = [[${jsonMap.returnUrl}]]; countDown(5,retUrl);</script></p>
+ </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+body{ background: #eeeeee;}
+.c-header{ margin-top: 30px;}
+.c-header ul{ float: right; width: 100%;}
+.c-header li{ position: relative; float: right; border: 1px solid transparent; border-radius: 10px; z-index: 12;}
+.c-header li a{ display: block; height: 54px; text-align: center; line-height: 54px; padding: 0 20px;}
+.c-header .c-img{ width: 22px; height: 22px; display: inline-block; vertical-align: middle;}
+.c-header .c-img1{ background: url(../img/icon1-hover.png);}
+.c-header .c-img2{ background: url(../img/icon2-hover.png);}
+.c-header .c-img3{ background: url(../img/icon3-hover.png);}
+.c-header .c-tit{ font-size: 16px; color: #666666; display: inline-block; vertical-align: middle;}
+.c-header li a:hover{ position: relative; z-index: 12;}
+
+.c-header li .c-hover{ position: absolute; top: 54px; right: 0; width: 186px; padding: 10px 18px; background: #fff; z-index: 11; box-shadow: 0 4px 7px 3px rgba(33,22,19,.15); display: none;}
+.c-header li.c-dianhua .c-hover{ width: 100%;}
+.c-header li:hover{ border-bottom-left-radius: 0; border-bottom-right-radius: 0; background: url(../img/bg1.jpg) repeat-x; border: 1px solid #bfbfbf;}
+.c-header li:hover .c-tit{ color: #E16038;}
+.c-header li:hover .c-img1{ background: url(../img/icon1.png);}
+.c-header li:hover .c-img2{ background: url(../img/icon2.png);}
+.c-header li:hover .c-img3{ background: url(../img/icon3.png);}
+.c-header li:hover .c-hover{ display: block;}
+.c-header li .c-hover p{ font-size: 14px; color: #666666; font-weight: lighter;}
+.c-header li .c-hover p a{ display: inline; width: auto; height: auto; line-height: normal; color: #E16038; font-weight: normal; padding: 0;}
+.c-header li .c-hover p a:hover{ background: #fff; color: #e16038;}
+.c-header li .c-hover p a:hover:after{ height: 0;}
+.c-header li .c-hover span{ font-size: 12px; color: #666666; font-weight: lighter;}
+.c-header li .c-hover .c-erweima{ width: 153px; height: 153px; border: 1px solid #f1f1f1; margin: 5px auto 0 auto;}
+.c-header li .c-hover h2{ font-size: 16px; line-height: 24px; color: #E16038;}
+.c-whitebox{ background: #fff;border-radius: 6px;}
+.c-whitebox .mt{ padding-top: 5px;}
+.c-whitebox .mt .c-title{ font-size: 20px; color: #666666; position: relative; line-height: 38px;}
+.c-whitebox .mt .c-title:after{ content: ""; position: absolute; bottom: 0; left: 15px; background: #03A9F4; width: 40px; height: 2px;}
+.c-whitebox .mt .c-orderNumber{ font-size: 20px; color: #666666; line-height: 38px; text-align: right; overflow: hidden; word-break: break-all;}
+.c-whitebox .mc{ text-align: center;}
+.c-whitebox .mc .c-money{ font-size: 24px; color: #666666; font-weight: bold; margin-bottom: 3px;}
+.c-whitebox .mc .c-money span{ color: #29BD29; font-size: 26px;}
+.c-whitebox .mc .c-money span em{ font-size: 36px; padding: 0 5px;}
+.c-whitebox .mc .c-type{ display: inline-block; font-size: 16px; color: #666666; font-weight: bold; line-height: 38px; border-bottom: 2px solid #dcdcdc; margin-bottom: 5px;}
+.c-whitebox .mc p{ font-size: 14px; color: #666666; line-height: 28px;}
+.c-whitebox .mc .c-main{ width: 270px; height: 351px; margin: 10px auto 0 auto; box-shadow: 0 0 7px 3px rgba(33,22,19,.15); background: #fff;border-radius: 5px;}
+.c-whitebox .mc .c-main .c-erweima{ width: 270px; height: 270px; padding: 24px; border-bottom: 1px solid #e7e7e7;}
+.c-whitebox .mc .c-main .c-tishi{ width: 270px; height: 80px;}
+.c-whitebox .mc .c-main .c-tishi .c-typelogo{ width: 46px; height: 46px; float: left; margin-left: 24px; margin-top: 17px;}
+.c-whitebox .mc .c-main .c-tishi .c-tit{ margin-top: 12px; float: left; margin-left: 6px;}
+.c-whitebox .mc .c-main .c-tishi .c-tit p{ color: #666666; font-size: 14px; line-height: 28px; text-align: left;}
+.c-whitebox .mc .c-yiwen{ color: #FF0000; font-size: 14px; line-height: 22px; padding: 17px 0; width: 262px; margin: 0 auto;}
+.c-whitebox .mb{ padding-top: 120px; padding-left: 30px;}
+.c-whitebox .mb .c-tishi{ width: 270px; height: 80px; margin-bottom: 27px; margin-left: 10px;}
+.c-whitebox .mb .c-tishi .c-typelogo{ width: 46px; height: 46px; float: left; margin-left: 24px; margin-top: 17px;}
+.c-whitebox .mb .c-tishi .c-tit{ margin-top: 12px; float: left; margin-left: 6px;}
+.c-whitebox .mb .c-tishi .c-tit p{ color: #666666; font-size: 14px; line-height: 28px; text-align: left;}
+.c-whitebox .mb .c-img{ width: 196px; height: 157px; margin: 0 auto; margin-bottom: 29px;}
+.c-whitebox .mb a{ width: 150px; height: 40px; display: block; border-radius: 3px; background: #009fe8; color: #fff; text-align: center; line-height: 40px; margin: 0 auto;}
+@media (max-width:1600px ) {
+.c-header{ margin-top: 40px;}
+}
+@media (max-width:1440px ) {
+.c-header{ margin-top: 40px;}
+}
+@media (max-width:1366px ) {
+.c-header{ margin-top: 0;}
+.c-whitebox .mc .c-money{ font-size: 20px;}
+.c-whitebox .mc .c-type{ font-size: 14px; line-height: 22px;}
+.c-whitebox .mc p{ font-size: 12px; line-height: 18px;}
+.c-whitebox .mc .c-yiwen{ font-size: 12px; line-height: 18px; padding: 12px 0;}
+}
+@media (max-width:1280px ) {
+.c-header{ margin-top: 0;}
+
+}
+@media (max-width:1024px ) {
+.c-header{ margin-top: 50px;}
+.c-header li a{ height: 44px; line-height: 44px;}
+.c-header li .c-hover{ top: 44px;}
+.c-whitebox .mc .c-money{ font-size: 24px;}
+.c-whitebox .mc .c-type{ font-size: 16px; line-height: 38px;}
+.c-whitebox .mc p{ font-size: 14px; line-height: 28px;}
+.c-whitebox .mc .c-yiwen{ font-size: 14px; line-height: 22px; padding: 17px 0;}
+.c-whitebox .mb{ padding-left: 15px;}
+}
+@media (max-width:768px ) {
+.c-header{ margin-top: 100px;}
+.c-header li a{ height: 32px; line-height: 32px;}
+.c-header li .c-hover{ top: 32px;}
+}
+@media (max-width:540px ) {
+.c-header{ margin-top: 0;}
+.c-header ul{ width: 100%; margin-top: 3px;}
+.c-header li{ position: relative; float: left; width: 33.333333%; border: 0; padding: 0;}
+.c-header li a{ height: 32px; line-height: 32px; padding: 0;}
+.c-header li .c-hover{ top: 32px;}
+.c-header .c-tit{ display: none;}
+.c-header li:hover .c-hover{ display: none;}
+.c-whitebox .mt .c-title{ margin-bottom: 15px;}
+.c-whitebox .mt .c-orderNumber{ text-align: left;}
+.c-whitebox .mb{ padding-top: 0; padding-bottom: 20px;}
+.c-whitebox .mc .c-yiwen{ width: auto;}
+}

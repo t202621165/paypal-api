@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<title>微信</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+<style>
+	.top{
+		width:100%;
+		height:110px;
+		background:#106A9F;
+		font-size:65px;
+		padding-top:10px;
+		
+	}
+	
+	.tbody{
+		width:80%;
+		height:auto;
+		background:white;
+		margin-left:10%;
+		margin-top:5%;
+		border-radius:30px;
+	}
+	
+	a:link{
+		color:white;
+		text-decoration:none;
+	}
+	
+	table {
+		width:100%;
+		color : #B7B7B7;
+		font-size:45px;
+		padding-bottom:5%;
+		border-spacing:0px 15px;
+	}
+	
+	.content{
+		width:90%;
+		height:auto;
+		background:white;
+		margin-left:5%;
+		margin-top:5%;
+		border-radius:30px;
+	}
+	
+	.mark{
+		width:15px;
+		height:70px;
+		background:#106A9F;
+		margin-right:20px;
+		float:left;
+	}
+	
+	.foot{
+		width:100%;
+		height:110px;
+		background:#106A9F;
+		font-size:65px;
+		padding-top:10px;
+		text-align:center;
+		margin-top:5%;
+	}
+</style>
+</head>
+
+<body style="background:#F4F4F4">
+	<div id = "tip">
+		<div class = "top"><a onclick="back();">《 </a></div>
+		<div class = "tbody">
+			<div style="text-align:center;padding-top:5%"><img id = "img" src="http://api.iwanol.com/images/success.png" width=160 height= 160 /></div>
+			<div style="font-size:65px;text-align:center;padding-top:5%;"><span ><strong id = "msg">支付成功</strong></span></div>
+			<hr style="margin-top:5%">
+			<div style="margin-top:5%;">
+				<table>
+					<tr>
+						<td style="padding-left:5%;">支付金额<td>
+						<td style="text-align:right;padding-right:5%"><span th:text = "${jsonMap.amount}"></span></td>
+					</tr>
+					<tr>
+						<td style="padding-left:5%;">客服QQ<td>
+						<td style="text-align:right;padding-right:5%">177752992</td>
+					</tr>
+					<tr>
+						<td style="padding-left:5%;">订单号<td>
+						<td style="text-align:right;padding-right:5%"><span th:text="${jsonMap.orderNumber}"></span></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class = "foot">
+			<a onclick="back();"> 返回 </a>
+		</div>
+	</div>
+	
+	<div id = "pay">
+		<div class = "content"> 
+			<table>
+				<tr>
+					<td style = "padding-left:5%;" collapse = 2><div class="mark"></div><strong style = "color:black">订单详情</strong><td>
+				</tr>
+				<tr>
+					<td style="padding-left:5%;color:#696969">商品<td>
+					<td style="text-align:right;padding-right:5%;color:#696969">传奇游戏充值</td>
+				</tr>
+				<tr>
+					<td style="padding-left:5%;color:#696969">金额<td>
+					<td style="text-align:right;padding-right:5%;color:red"><span th:text="${jsonMap.amount}">1.89</span> 元</td>
+				</tr>
+				<tr>
+					<td style="padding-left:5%;color:#696969">单号<td>
+					<td style="text-align:right;padding-right:5%;color:#696969"><span th:text = "${jsonMap.orderNumber}"></span></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class = "content"> 
+			<table>
+				<tr>
+					<td style = "padding-left:5%;" collapse = 2><div class="mark"></div><strong style = "color:black">防骗警惕</strong><td>
+				</tr>
+				<tr>
+					<td style="padding-left:5%;color:black;font-size:35px;" collapse = 2>1.仅限传奇游戏充值,其他游戏充值请立即举报<td>
+				</tr>
+				<tr>
+					<td style="padding-left:5%;color:black;font-size:35px;" collapse = 2>2.别人发你的二维码请勿付款,请立即举报<td>
+				</tr>
+				<tr>
+					<td style="padding-left:5%;color:black;font-size:35px;" collapse = 2>3.举报游戏赌博核实奖励 <span style="color:red">1000</span> 元<td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class = "content"> 
+			<table>
+				<tr>
+					<td style = "padding-left:5%;" collapse = 2><div class="mark"></div><strong style = "color:black">联系方式</strong><td>
+				</tr>
+				<tr>
+					<td style="padding-left:5%;color:black">举报QQ<td>
+					<td style="text-align:right;padding-right:5%;color:#696969">177752992</td>
+				</tr>
+				<tr>
+					<td style="padding-left:5%;color:black">客服QQ<td>
+					<td style="text-align:right;padding-right:5%;color:#696969">177752992</td>
+				</tr>
+			</table>
+		</div>
+		<div class = "foot">
+				<a onclick="pay();"> <span style = "color:white">立即支付</span> </a>
+		</div>
+	</div>	
+</body>
+<script th:inline="javascript">
+   	   var data = [[${jsonMap}]];
+   	   document.getElementById("tip").style.display="none";
+   	   function onBridgeReady(){
+		   WeixinJSBridge.invoke(
+		        'getBrandWCPayRequest', {
+		         "appId":data.appId,   
+		         "timeStamp":data.timeStamp, 
+		         "nonceStr":data.nonceStr, 
+		         "package":data.package,     
+		         "signType":data.signType,  
+		         "paySign":data.paySign 
+		      },
+		      function(res){
+		      if(res.err_msg == "get_brand_wcpay_request:ok" ){
+		      		// 使用以上方式判断前端返回,微信团队郑重提示：
+		            //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+		            document.getElementById("pay").style.display="none";
+		            document.getElementById("tip").style.display="inline";
+		      }else{
+		      	   document.getElementById("pay").style.display="none";
+		      	   document.getElementById("msg").innerHTML = "支付失败";
+		      	   document.getElementById("img").src = "http://api.iwanol.com/images/fail.png";
+		      	   document.getElementById("tip").style.display="inline";
+		      }
+	   }); 
+	}
+	
+	function pay(){
+		if (typeof WeixinJSBridge == "undefined"){
+		   if( document.addEventListener ){
+		       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+		   }else if (document.attachEvent){
+		       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+		       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		   }
+		}else{
+		   onBridgeReady();
+		}
+	}
+	
+	function back(){
+		WeixinJSBridge.call("closeWindow");
+	}
+	
+	
+    </script>
+</html>

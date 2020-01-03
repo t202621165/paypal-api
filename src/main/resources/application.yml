@@ -1,0 +1,30 @@
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+  datasource:
+    url: jdbc:mysql://114.55.94.50:8889/paypal
+    #url: jdbc:mysql://114.55.255.223:3306/paypal
+    username: root
+    password: iwanol0928****
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database: MYSQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+server:
+  port: 8083
+  tomcat:
+    max-threads: 1000
+  servlet:
+    session:
+      timeout: 3600
+      

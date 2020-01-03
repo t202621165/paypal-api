@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,tr,td,img,div,dl,dd,dt,iframe{ border:0px; margin:0px; padding:0px; font-size:12px; font-family:"微软雅黑",Arial, Helvetica, sans-serif; color:#000;}
+html{ margin:0 auto 0;}
+body{margin:0 auto; width:100%;}
+a{text-decoration:none; border:0; color:#000; blur:expression(this.onFocus=this.blur())}
+a:hover{ text-decoration:none; color:#be0000; outline:none;}
+a:focus{ outline: none;}
+img{ border:0; margin:0; padding:0;}
+h1,h2,h3,h4,h5{ margin:0; padding:0;}
+p{ line-height:25px; margin:0; padding:0; font-size:12px;}
+ul,ol,li,dl,dt,dd,em{list-style-type:none;margin:0; padding:0; font-style:normal;}
+
+/*以上为通用*/
+
+.upper,.decor,.top{width:100%;}
+.upper{ height:300px; background:#57c4f6;}
+.decor{ height:55px; background:url(../images/bg.png) repeat-x;}
+.top{ height:60px; line-height:60px;}
+.top .logo{ font-size:24px; color:#fff; margin-left:100px;}
+.top .logo small{ margin-left:10px;}
+
+.success{width:425px; height:240px; margin:0 auto; text-align:center;}
+.success img{width:125px; height:125px; display:block; margin:0 auto;}
+.success p{ color:#fff; line-height:30px;}
+.success p.suc-lg{ font-size:20px; margin-top:20px;}
+.success p.suc-sm{ font-size:14px;}
+
+.downout{width:900px; height:230px; box-shadow:5px 4px 15px #f3f3f3; margin:4% auto 0; padding:20px 30px;}
+
+.downout p{ line-height:40px; margin:5px 0 10px 0; font-size:14px; color:#6f6f6f;}
+.downout table{ border:1px solid #e4e4e4; border-spacing:0; border-right:none; }
+.downout table tr{ height:50px; }
+.downout table tr td{ border:1px solid #e4e4e4; padding-left:30px; border-top:none; border-left:none; font-size:14px;}
+.downout table tbody tr:last-child th, .infor-tab table tbody tr:last-child td{ border-bottom:none;}
+.bor0r{ border-right:0px !important;}
+.bor0b{ border-bottom:0px !important;}
+
+.footback{ text-align:center; margin:80px auto 50px; color:#6f6f6f;}
+.footback a{ color:#6f6f6f; margin:0 10px;}
+.footback a:hover{ color:#09F;}

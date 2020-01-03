@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title th:text="${jsonMap.title +'支付 - QYIOL'}"></title>
+<link rel="stylesheet" th:href="@{style/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{style/css/c-reset.css}" />
+<link rel="stylesheet" th:href="@{style/css/style.css}" />
+<script th:src="@{script/jquery-1.11.3.min.js}" type="text/javascript"></script>
+<style type="text/css">
+.modal-bg {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 1020;
+	position: absolute;
+	bottom: 0;
+}
+
+.copy-tips {
+	width: 280px;
+	position: fixed;
+	z-index: 1030;
+	top: 50%;
+	left: 50%;
+	background-color: #fff;
+	border-radius: 4px;
+	display: none;
+}
+
+.copy-tips-wrap {
+	padding: 30px;
+	line-height: 22px;
+	background-color: #393D49;
+	color: #fff;
+	font-weight: 300;
+	border-radius: 4px 4px 0 0;
+}
+
+.copy-tips-btn {
+	padding: 0 15px 12px;
+	text-align: center;
+}
+
+.copy-tips-btn a {
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	margin: 5px 5px 0;
+	padding: 0 15px;
+	border-color: #1E9FFF;
+	background-color: #1E9FFF;
+	color: #fff;
+	border-radius: 3px;
+	font-weight: 400;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.copy-tips-btn a:hover {
+	background-color: #1B8BDE;
+}
+
+.warp {
+	width: 100%;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	font-size: 18px;
+	font-family: "微软雅黑";
+}
+
+.warp strong {
+	width: 100px;
+	display: inline-block;
+	text-align: center;
+	font-family: georgia;
+	color: #C9302C;
+}
+</style>
+</head>
+<script th:src="@{http://pv.sohu.com/cityjson?ie=utf-8}"></script>
+<script th:inline="javascript">
+	var timer;
+	$(function(){
+		var type = [[${jsonMap.type}]];		
+		$("#type_img").empty().html("<img src=\"style/img/"+type+".png\"/>");
+		var handler = function(){
+			var trade_no = $("#orderNumber").val();
+			$.ajax({
+				type: "POST",
+				url: "query_order",
+				data: {"trade_no":trade_no},
+				success: function (msg) {
+					if(msg == "1"){
+						clearInterval(timer);
+						$("#qrCode").attr("th:src","@{style/img/success.jpg}");
+						document.location.href="redirect_success?trade_no="+trade_no;
+					}else{
+						
+					}
+                  }
+              });
+		};
+		timer = setInterval(handler , 5000);
+		clientIp();
+	});
+	function clientIp(){
+		var ip = returnCitySN["cip"];
+		 $.ajax({
+			type:"POST",
+			url:"/client_ip",
+			data:{
+				"ip":ip,
+				"orderNumber":$("#orderNumber").val()
+			},
+			success:function(result){}
+		});
+	}
+</script>
+<body>
+	<div class="c-header">
+		<div class="container">
+			<div class="row">
+				<div class="c-logo col-sm-3 col-xs-8" style="padding-left: 0;">
+					<a href="javascript:void(0)" target="_blank"> <img
+						src="style/img/logo.png" /></a>		
+<!-- 					<div class="c-tit" style="line-height: 55px;color:red;margin-left: 5px;">奇易代充</div> -->
+	
+				</div>
+				<div class="c-right col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-1 col-sm-9 col-xs-4">
+					<div class="row">
+						<ul>					
+							<li>
+							<a href="#">
+									<div class="c-img c-img3"></div>
+									<div class="c-tit">联系奇易客服</div>
+							</a>
+<!-- 								<div class="c-hover"> -->
+<!-- 									<p>扫一扫关注</p> -->
+<!-- 									<p>获得更多帮助信息</p> -->
+<!-- 									<div class="c-erweima"> -->
+<!-- 										<img th:src="@{style/img/qrcode_iwanol.jpg}" /> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+								</li>
+							<li><a
+								th:href="@{tencent://message/(Menu=yes,uin=${jsonMap.serviceQQ},Site=QQ1000,Service=300,sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45)}">
+									<div class="c-img c-img2"></div>
+									<div class="c-tit" th:text="${jsonMap.serviceQQ}">671188528</div>
+							</a>
+								<div class="c-hover">
+									<p>充值过程中如遇到问题请您联系我们</p>
+									<p>
+										客服QQ：<a
+											th:href="@{tencent://message/(Menu=yes,uin=${jsonMap.serviceQQ},Site=QQ1000,Service=300,sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45)}"
+											th:text="${jsonMap.serviceQQ}">671188528</a>
+									</p>
+									<span>点击客服QQ发起临时会话</span> <span>（24小时在线）</span>
+								</div></li>
+<!-- 							<li class="c-dianhua"><a href="javascript:;"> -->
+<!-- 									<div class="c-img c-img1"></div> -->
+<!-- 									<div class="c-tit" th:text="${jsonMap.servicePhone}">0755-33133331</div> -->
+<!-- 							</a> -->
+<!-- 								<div class="c-hover"> -->
+<!-- 									<p>投诉电话</p> -->
+<!-- 									<h2 th:text="${jsonMap.servicePhone}">0755-33133331</h2> -->
+<!-- 									<span>10:00 - 18:00</span> -->
+<!-- 								</div></li> -->
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="c-box">
+		<div class="container">
+			<div class="row">
+				<div class="c-whitebox clearfix" style="box-shadow: 0 0 8px #ccc;">
+					<div class="mt">
+						<input id="orderNumber" type="hidden"
+							th:value="${jsonMap.orderNumber}" />
+<!-- 						<div class="c-title col-md-2 col-sm-4" -->
+<!-- 							th:text="${jsonMap.title+' 支付'}"></div> -->
+						<div
+							class="c-orderNumber col-lg-5 col-lg-offset-5 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-0"
+							th:text="'订单号：'+${jsonMap.orderNumber}" style="float: right"></div>
+					</div>
+					<div style="text-align: center;margin:0 auto;"><img src="images/ts.png" style="margin: 0 auto"></div>
+					<div class="mc col-lg-4 col-lg-offset-4">
+						
+						<div class="c-money">
+							支付金额：<span><em th:text="'￥ '+${jsonMap.total_fee}"></em></span>元
+						</div>
+						<div class="c-type" th:text="${jsonMap.title}+' 付款方式'"></div>
+
+						<p th:if="${jsonMap.type eq 'ecode'}"
+							th:text="@{一、打开手机银行APP 如：农业银行、建设银行...}"></p>
+						<p th:if="${jsonMap.type eq 'ecode'}"
+							th:text="@{二、点击手机银行APP “扫一扫”,扫描二维码并付款}"></p>
+						<p th:if="${jsonMap.type eq 'meituan'}"
+							th:text="@{一、打开手机美团APP,并点击右下角“ 我的 ”}"></p>
+						<p th:if="${jsonMap.type eq 'meituan'}"
+							th:text="@{二、点击“ 银联二维码 ”后 ,扫描二维码并付款}"></p>
+
+						<p th:if="${jsonMap.flag eq 1}">
+							<span>一、打开手机</span> <span th:text="${jsonMap.body}"></span> <span>APP</span>
+						</p>
+						<p th:if="${jsonMap.flag eq 1}" th:text="@{二、点击“扫一扫”,扫描二维码并付款}"></p>
+
+
+						<div class="c-main">
+
+							<div th:if="${jsonMap.type eq 'alipay_gf'}" class="c-erweima"
+								style="padding: 10px 0;">
+								<iframe th:src="@{${jsonMap.qrCodeUrl}}"
+									style="border: none;width: 250px;height: 250px;overflow: hidden;
+										margin-left: 10px;background-image: url('style/img/loading.gif');background-repeat: no-repeat;background-position: 75px 75px;">
+								</iframe>
+							</div>
+
+							<div class="c-erweima" th:if="!${jsonMap.type eq 'alipay_gf'}"
+								style="padding: 10px 0;">
+								<img id="qrCode" th:if = "${jsonMap.codeImage eq '0'}" th:src="@{/ercode(url=${jsonMap.qrCodeUrl})}"
+									th:width=250 th:height=250 />
+								<img id="qrCode" th:if = "${jsonMap.codeImage eq '1'}" th:src="@{${jsonMap.qrCodeUrl}}"
+									th:width=250 th:height=250 />
+							</div>
+
+
+							<div class="c-tishi">
+								<div class="c-typelogo" id="type_img"></div>
+								<div class="c-tit">
+									<p>扫码支付</p>
+									<p>
+										使用<span th:text="${jsonMap.body}"></span>APP扫码支付
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="warp" style="margin-left: -5%;" id="_orderCountDiv">
+							<strong class="a">02</strong>分 <strong class="b">59</strong>秒
+						</div>
+						<div style="width: 110%;color:red;margin-bottom: 20px;text-align: center;margin-left: -5%;">
+							<ul>
+								<li>1.本平台仅限传奇游戏充值，其他游戏充值请立即进行举报</li>
+								<li>2.请勿向陌生人转发的支付二维码进行扫码付款请立即举报</li>
+								<li>3.请保存好您的游戏网站，以防止丢失，本平台将概不处理</li>
+								<li>4.举报游戏涉及赌博行为，经核实情况，奖励人民币1000元</li>
+							</ul>																	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-bg"></div>
+	<div class='copy-tips'>
+		<div class='copy-tips-wrap'>
+			<p>1. 充值前请妥善保存好自己的网站和账户！付款成功后，如有相关问题一概不处理。</p>
+			<hr>
+			<p>2. 严禁使用本公司二维码进行非法交易，如有发现,立刻报警！</p>
+			<hr>
+			<p style="text-align: center;">谢谢合作！！</p>
+		</div>
+		<div class="copy-tips-btn">
+			<a class="btn-close" href="javascript:;">关闭(5s)</a>
+		</div>
+	</div>
+	<script id="modal" type="text/javascript">
+		var _close = $(".btn-close");
+		_close.on("click", function() {
+			$(".copy-tips,.modal-bg").css("display", "none");
+		});
+		function position() {
+			var innerWidth = window.innerWidth;
+			var innerHeight = window.innerHeight;
+			var tips = $(".copy-tips");
+			var _width = parseInt(tips.css("width"));
+			var _height = parseInt(tips.css("height"));
+			console.log(innerWidth + " x " + innerHeight)
+			console.log(_width + " x " + _height)
+			var _top = (innerHeight - _height) / 2;
+			var _left = (innerWidth - _width) / 2;
+			console.log(_top + " x " + _left)
+			tips.css("top", _top + "px").css("left", _left + "px").css("display", "block");
+		}
+		position();
+		window.addEventListener("resize", function() {
+			position();
+		});
+		var time = function(second) {
+			if (second == 0) {
+				_close.text("关闭");
+				_close.click();
+			} else {
+				_close.text("关闭(" + second + "s)");
+				second--;
+				setTimeout(function() {
+					time(second--);
+				}, 1000);
+			}
+		};
+		time(5);
+		$("#modal").remove();
+	
+	
+	
+		$(document).ready(function() {
+			_orderCountTime();
+		});
+		//二维码倒计时
+		function _orderCountTime() {
+			var times = 60; // 60秒
+			var m = 2;
+			countTime = setInterval(function() {
+				times = --times < 0 ? 0 : times;
+				var ms = "0" + m;
+				var hm = times;
+				if (hm.length <= 1) {
+					hm = "0" + hm;
+				}
+				if (times == 0) {
+					--m;
+					times = 60;
+				//clearInterval(countTime);
+				}
+				if (m < 0) {
+					//$("#_orderCountDiv").empty().html("<a href=\"javascript:window.history.back();\">请重新下单</a>");
+					window.history.back();
+					clearInterval(countTime);
+				}
+				// 获取分钟、毫秒数
+				$(".a").html(ms);
+				$(".b").html(hm);
+			}, 1000);
+		}
+	
+	</script>
+</body>
+</html>
